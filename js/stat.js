@@ -24,7 +24,7 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var renderText = function (ctx, font, baseLine, text, x, y) {
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = 'black';
   ctx.font = font;
   ctx.textBaseline = baseLine;
   ctx.fillText(text, x, y);
