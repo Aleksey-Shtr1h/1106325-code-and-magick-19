@@ -3,6 +3,7 @@ var wizardNames = ['Иван', 'Хуан Себастьян', 'Мария', 'К�
 var wizardLastNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг', 'Вашингтон'];
 var wizardCoatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var wizardEyesColor = ['black', 'red', 'blue', 'yellow'];
+var numberWizard = 4;
 
 var renderWizardsObj = function (arg) {
   return Math.floor(Math.random() * arg.length);
@@ -21,32 +22,21 @@ closeButton.addEventListener('click', function (evt) {
   userDialog.classList.add('hidden');
 });
 
-var wizards = [
-  {
-    name: wizardNames[renderWizardsObj(wizardNames)],
-    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-  },
-  {
-    name: wizardNames[renderWizardsObj(wizardNames)],
-    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-  },
-  {
-    name: wizardNames[renderWizardsObj(wizardNames)],
-    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-  },
-  {
-    name: wizardNames[renderWizardsObj(wizardNames)],
-    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
+var wizards = [];
+
+var renderNumberWizard = function (arg) {
+  for (var i = 0; i < arg; i++) {
+    wizards.push({
+      name: wizardNames[renderWizardsObj(wizardNames)],
+      lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
+      coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
+      eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
+    });
   }
-];
+  return wizards;
+};
+
+renderNumberWizard(numberWizard);
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
