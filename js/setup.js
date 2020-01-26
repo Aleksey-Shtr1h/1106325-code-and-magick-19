@@ -5,8 +5,8 @@ var wizardCoatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100,
 var wizardEyesColor = ['black', 'red', 'blue', 'yellow'];
 
 var renderWizardsObj = function (arg) {
-  return arg = Math.floor(Math.random() * arg.length);
-}
+  return Math.floor(Math.random() * arg.length);
+};
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -16,36 +16,36 @@ var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 var closeButton = document.querySelector('.setup-close');
-closeButton.addEventListener('click', function(evt) {
- evt.preventDefault();
- userDialog.classList.add('hidden');
+closeButton.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  userDialog.classList.add('hidden');
 });
 
 var wizards = [
-{
-  name: wizardNames[renderWizardsObj(wizardNames)],
-  lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-  coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-  eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-},
-{
-  name: wizardNames[renderWizardsObj(wizardNames)],
-  lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-  coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-  eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-},
-{
-  name: wizardNames[renderWizardsObj(wizardNames)],
-  lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-  coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-  eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-},
-{
-  name: wizardNames[renderWizardsObj(wizardNames)],
-  lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-  coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
-  eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-}
+  {
+    name: wizardNames[renderWizardsObj(wizardNames)],
+    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
+    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
+    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
+  },
+  {
+    name: wizardNames[renderWizardsObj(wizardNames)],
+    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
+    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
+    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
+  },
+  {
+    name: wizardNames[renderWizardsObj(wizardNames)],
+    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
+    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
+    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
+  },
+  {
+    name: wizardNames[renderWizardsObj(wizardNames)],
+    lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
+    coatColor: wizardCoatColor[renderWizardsObj(wizardCoatColor)],
+    eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
+  }
 ];
 
 var renderWizard = function (wizard) {
@@ -56,7 +56,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
 
   return wizardElement;
-}
+};
 
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizards.length; i++) {
