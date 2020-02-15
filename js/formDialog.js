@@ -1,11 +1,8 @@
 'use strict';
 (function () {
 
-  // var wizards = [];
   var ESC_KEY = 'Escape';
   var ENTER_KEY = 'Enter';
-  // var wizardNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  // var wizardLastNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг', 'Вашингтон'];
   var wizardCoatsColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var wizardEyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
   var wizardFireBallsColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
@@ -24,6 +21,7 @@
   var dialogHandler = userDialog.querySelector('.upload');
   var topStartCoord;
   var leftStartCoord;
+  var form = userDialog.querySelector('.setup-wizard-form');
 
   // Открытие и закрытие формы
 
@@ -75,20 +73,6 @@
     return Math.floor(Math.random() * arg.length);
   };
 
-  // var renderNumberWizard = function (arg) {
-  //   for (var i = 0; i < arg; i++) {
-  //     wizards.push({
-  //       name: wizardNames[renderWizardsObj(wizardNames)],
-  //       lastNames: wizardLastNames[renderWizardsObj(wizardLastNames)],
-  //       coatColor: wizardCoatsColor[renderWizardsObj(wizardCoatsColor)],
-  //       eyesColor: wizardEyesColor[renderWizardsObj(wizardEyesColor)],
-  //     });
-  //   }
-  //   return wizards;
-  // };
-
-  // renderNumberWizard(numberWizard);
-
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -120,16 +104,22 @@
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
-  window.load(successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 
-  // var form = userDialog.querySelector('.setup-wizard-form');
-  // form.addEventListener('submit', function (evt) {
-  //   window.upload(new FormDate(form), function (response) {
-  //     userDialog.classList.add('hidden');
-  //   });
-  //   evt.preventDefault();
-  // });
+  var formHandler = function (evt) {
+    var formDataPost = new FormData(form);
+    var buttonSubmit = document.querySelector('.setup-submit');
+    buttonSubmit.textContent = 'Отправка данных...';
+    buttonSubmit.disabled = true;
+    window.backend.save(formDataPost, function () {
+      userDialog.classList.add('hidden');
+      buttonSubmit.textContent = 'Сохранить';
+      buttonSubmit.disabled = false;
+    }, errorHandler);
+    evt.preventDefault();
+  };
 
+  form.addEventListener('submit', formHandler);
 
   // Изменение мага пользователя в форме
 
